@@ -6,6 +6,7 @@
 
 <style lang="scss">
 @import "./assets/common/css/reset.css";
+@import "./assets/common/css/font-awesome.min.css";
 body,
 html {
   width: 100%;
