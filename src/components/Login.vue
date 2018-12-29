@@ -22,7 +22,7 @@
 export default {
   methods: {
     login: () => {
-      this.$router.push({ path: "/home", name: "home" });
+      this.router.push({ path: "/home", name: "home" });
     }
   }
 };
@@ -60,9 +60,9 @@ export default {
         width: 300px;
       }
 
-      .el-form-item[data-v-ef68022e] {
+      /deep/ .el-form-item[data-v-ef68022e] {
         .el-form-item__content {
-          /deep/ label.el-form-item__label {
+          label {
             color: #fff !important;
           }
           button.el-button--primary {
