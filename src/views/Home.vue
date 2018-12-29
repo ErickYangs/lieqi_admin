@@ -117,8 +117,11 @@ export default {
     .el-menu {
       border-right: none;
       height: 100%;
-      .el-submenu {
+      /deep/ .el-submenu {
         text-align: left;
+        .el-submenu__title:hover {
+          background-color: rgb(40, 52, 70) !important;
+        }
         .el-menu-item {
           &:hover {
             background-color: rgb(40, 52, 70);
