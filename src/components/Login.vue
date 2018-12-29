@@ -22,7 +22,7 @@
 export default {
   methods: {
     login: () => {
-      this.router.push({ path: "/home", name: "home" });
+      this.$router.push({ path: "/home", name: "home" });
     }
   }
 };
@@ -55,12 +55,12 @@ export default {
       border-bottom: 1px solid #fff;
       color: #fff;
     }
-    form.el-form {
+    /deep/ .el-form {
       .el-input {
         width: 300px;
       }
 
-      /deep/ .el-form-item[data-v-ef68022e] {
+      .el-form-item {
         .el-form-item__content {
           label {
             color: #fff !important;
