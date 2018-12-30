@@ -1,23 +1,52 @@
 <template>
   <el-container>
-  <el-header>
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group>
+  <el-header style="height: 60px;">
+    <div class="open" @click="switch_p()">
+      <i class="fa fa-superpowers fa"></i>
+    </div>
+    <div class="logo">
+      <h1 title="猎奇新闻管理系统"></h1>
+    </div>
+    <div class="head-user">
+      <div class="btn-fullscreen">
+        <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
+          <i class="fa fa-snowflake-o"></i>
+        </el-tooltip>
+      </div>
+      <div class="btn-message">
+        <el-tooltip class="item" effect="dark" content="有2条未读消息" placement="bottom">
+          <i class="fa fa-clock-o"></i>
+        </el-tooltip>
+      </div>
+      <div class="user-img">
+        <img src="../assets/user.jpg" alt="">
+      </div>
+      <div class="user-name">
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            EricYang<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown" style="top:auto; top: 40px; padding-bottom: 0;">
+            <el-dropdown-item>用户信息</el-dropdown-item>
+            <el-dropdown-item>项目仓库</el-dropdown-item>
+            <el-dropdown-item class="login-out" style="border-top: 1px solid #ccc;">退出登陆</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </div>
   </el-header>
   <el-container>
-    <el-aside style="width: auto; max-width: 200px;">
-      <el-menu active-text-color="#5e99f3" default-active="1-1" style="background-color: rgb(50, 65, 87);" class="el-menu-vertical-demo" @close="handleClose" :collapse="isCollapse">
+    <el-aside style="width: auto; max-width: 220px;">
+      <el-menu :unique-opened="true" :router="true" active-text-color="#5e99f3" default-active="/home/news_add" text-color="#BFCBD9" background-color="#304058" class="el-menu-vertical-demo" @close="handleClose" :collapse="isCollapse">
         <el-submenu index="1">
           <template slot="title">
             <i class="fa fa-th-large" style="margin-right: 16px;margin-left: 5px; margin-bottom: 2px;"></i>
             <span slot="title">独立推荐</span>
           </template>
-          <el-menu-item-group style="background-color: rgb(50, 65, 87);">
-            <el-menu-item index="1-1"><i class="fa fa-newspaper-o" style="margin-right: 14px;margin-left: 5px; margin-bottom: 2px;"></i>新闻</el-menu-item>
-            <el-menu-item index="1-2"><i class="fa fa-search" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>新闻搜索</el-menu-item>
-            <el-menu-item index="1-3"><i class="fa fa-trash-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>删除新闻</el-menu-item>
+          <el-menu-item-group>
+            <el-menu-item index="/home/news_add"><i class="fa fa-newspaper-o" style="margin-right: 14px;margin-left: 5px; margin-bottom: 2px;"></i>新闻</el-menu-item>
+            <el-menu-item index="/home/news_search"><i class="fa fa-search" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>新闻搜索</el-menu-item>
+            <el-menu-item index="/home/news_delete"><i class="fa fa-trash-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>删除新闻</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="2">
@@ -25,13 +54,13 @@
             <i class="fa fa-google-plus" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>
             <span slot="title">页面管理</span>
           </template>
-          <el-menu-item-group style="background-color: rgb(50, 65, 87);">
-            <el-menu-item index="2-1"><i class="fa fa-bandcamp" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>首页轮播图</el-menu-item>
-            <el-menu-item index="2-2"><i class="fa fa-file-archive-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>首页文字链</el-menu-item>
-            <el-menu-item index="2-3"><i class="fa fa-picture-o" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>首页图片</el-menu-item>
-            <el-menu-item index="2-3"><i class="fa fa-mortar-board" style="margin-right: 16px;margin-left: 5px; margin-bottom: 2px;"></i>Topic新闻</el-menu-item>
-            <el-menu-item index="2-3"><i class="fa fa-map-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>index2新闻</el-menu-item>
-            <el-menu-item index="2-3"><i class="fa fa-modx" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新闻修改</el-menu-item>
+          <el-menu-item-group>
+            <el-menu-item index="/home/page_index_banner"><i class="fa fa-bandcamp" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>首页轮播图</el-menu-item>
+            <el-menu-item index="/home/page_index_text"><i class="fa fa-file-archive-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>首页文字链</el-menu-item>
+            <el-menu-item index="/home/page_index_pic"><i class="fa fa-picture-o" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>首页图片</el-menu-item>
+            <el-menu-item index="/home/page_topic_news"><i class="fa fa-mortar-board" style="margin-right: 16px;margin-left: 5px; margin-bottom: 2px;"></i>Topic新闻</el-menu-item>
+            <el-menu-item index="/home/page_index2_news"><i class="fa fa-map-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>index2新闻</el-menu-item>
+            <el-menu-item index="/home/page_modify_news"><i class="fa fa-modx" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新闻修改</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
@@ -39,10 +68,10 @@
             <i class="el-icon-news" style="margin-right: 8px;margin-left: 2px; margin-bottom: 2px;"></i>
             <span slot="title">素材管理</span>
           </template>
-          <el-menu-item-group style="background-color: rgb(50, 65, 87);">
-            <el-menu-item index="3-1"><i class="fa fa-edge" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>奇手素材Lib库</el-menu-item>
-            <el-menu-item index="3-2"><i class="fa fa-foursquare" style="margin-right: 20px;margin-left: 5px; margin-bottom: 2px;"></i>前端30条Fe库</el-menu-item>
-            <el-menu-item index="3-3"><i class="fa fa-dropbox" style="margin-right: 17px;margin-left: 4px; margin-bottom: 2px;"></i>猎奇优选Res库</el-menu-item>
+          <el-menu-item-group>
+            <el-menu-item index="/home/soruce_lib"><i class="fa fa-edge" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>奇手素材Lib库</el-menu-item>
+            <el-menu-item index="/home/source_fe"><i class="fa fa-foursquare" style="margin-right: 20px;margin-left: 5px; margin-bottom: 2px;"></i>前端30条Fe库</el-menu-item>
+            <el-menu-item index="/home/source_res"><i class="fa fa-dropbox" style="margin-right: 17px;margin-left: 4px; margin-bottom: 2px;"></i>猎奇优选Res库</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="4">
@@ -50,18 +79,27 @@
             <i class="fa fa-free-code-camp" style="margin-right: 14px;margin-left: 5px; margin-bottom: 2px;"></i>
             <span slot="title">其他</span>
           </template>
-          <el-menu-item-group style="background-color: rgb(50, 65, 87);">
-            <el-menu-item index="4-1"><i class="fa fa-fonticons" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>萨摩耶</el-menu-item>
-            <el-menu-item index="4-2"><i class="fa fa-pinterest-square" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新首页</el-menu-item>
-            <el-menu-item index="4-3"><i class="fa fa-wpbeginner" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>每日最优数据库</el-menu-item>
-            <el-menu-item index="4-3"><i class="fa fa-yelp" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新闻站导猎奇</el-menu-item>
-            <el-menu-item index="4-3"><i class="fa fa-feed" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>用户反馈</el-menu-item>
-            <el-menu-item index="4-3"><i class="fa fa-audio-description" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>哈士奇</el-menu-item>
+          <el-menu-item-group>
+            <el-menu-item index="/home/other_smy"><i class="fa fa-fonticons" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>萨摩耶</el-menu-item>
+            <el-menu-item index="/home/other_newindex"><i class="fa fa-pinterest-square" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新首页</el-menu-item>
+            <el-menu-item index="/home/other_datalib"><i class="fa fa-wpbeginner" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>每日最优数据库</el-menu-item>
+            <el-menu-item index="/home/other_newslieqi"><i class="fa fa-yelp" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新闻站导猎奇</el-menu-item>
+            <el-menu-item index="/other_feedback"><i class="fa fa-feed" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>用户反馈</el-menu-item>
+            <el-submenu index="4-8">
+              <template slot="title" ><i class="fa fa-audio-description" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>哈士奇</template>
+              <el-menu-item index="/home/hsq_index_banner"><i class="fa fa-bluetooth-b" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>首页轮播图</el-menu-item>
+              <el-menu-item index="/home/hsq_index_text"><i class="fa fa-bullseye" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>首页文字链</el-menu-item>
+              <el-menu-item index="/home/hsq_Topic_news"><i class="fa fa-caret-square-o-up" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>Topic新闻</el-menu-item>              
+            </el-submenu>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
     </el-aside>
-    <el-main>Main</el-main>
+    <el-main>
+      <keep-alive>
+        <router-view>main</router-view>
+      </keep-alive>
+    </el-main>
   </el-container>
 </el-container>
 </template>
@@ -70,7 +108,7 @@
 export default {
   data() {
     return {
-      isCollapse: true
+      isCollapse: false
     };
   },
   methods: {
@@ -79,6 +117,13 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    switch_p() {
+      if (!this.isCollapse) {
+        this.isCollapse = true;
+      } else {
+        this.isCollapse = false;
+      }
     }
   }
 };
@@ -86,10 +131,69 @@ export default {
 
 <style scoped lang="scss">
 .el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
+  background-color: #242f42;
+  color: #fff;
+  height: 60px;
   line-height: 60px;
+  padding: 0;
+  .open {
+    float: left;
+    width: 64px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 1s;
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+  .logo {
+    float: left;
+    h1 {
+      width: 180px;
+      height: 60px;
+      background-size: cover;
+      background: url(../assets/log.png) no-repeat center center;
+    }
+  }
+  .head-user {
+    float: right;
+    display: flex;
+    height: 60px;
+    padding-right: 40px;
+    .user-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .btn-fullscreen,
+    .btn-message {
+      cursor: pointer;
+      padding: 0 10px;
+    }
+    .user-name {
+      cursor: pointer;
+      span {
+        color: #fff;
+      }
+      ul.el-dropdown-menu {
+        li {
+          font-size: 12px;
+          border-top: 1px solid #ccc;
+        }
+      }
+    }
+  }
 }
 
 .el-aside {
@@ -104,6 +208,7 @@ export default {
   color: #333;
   text-align: center;
   height: 100%;
+  padding: 0 10px;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
@@ -113,28 +218,13 @@ export default {
 .el-container {
   height: 100%;
   .el-aside {
-    max-width: 201px;
+    max-width: 220px;
     .el-menu {
       border-right: none;
       height: 100%;
-      /deep/ .el-submenu {
+      .el-submenu {
         text-align: left;
-        .el-submenu__title:hover {
-          background-color: rgb(40, 52, 70) !important;
-        }
-        .el-menu-item {
-          &:hover {
-            background-color: rgb(40, 52, 70);
-          }
-          color: rgb(191, 203, 217);
-        }
-        span {
-          color: rgb(191, 203, 217);
-        }
       }
-    }
-    .el-menu--inline {
-      background-color: red;
     }
   }
 }
