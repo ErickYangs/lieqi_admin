@@ -1,5 +1,5 @@
 <template>
-  <h1>news_add</h1>
+  <h1>soruce_lib</h1>
 </template>
 
 <script>

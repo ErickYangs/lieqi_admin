@@ -37,18 +37,15 @@
   </el-header>
   <el-container>
     <el-aside style="width: auto; max-width: 220px;">
-      <el-menu :unique-opened="true" :router="true" active-text-color="#5e99f3" default-active="/home/news_add" text-color="#BFCBD9" background-color="#304058" class="el-menu-vertical-demo" @close="handleClose" :collapse="isCollapse">
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="fa fa-th-large" style="margin-right: 16px;margin-left: 5px; margin-bottom: 2px;"></i>
-            <span slot="title">独立推荐</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/home/news_add"><i class="fa fa-newspaper-o" style="margin-right: 14px;margin-left: 5px; margin-bottom: 2px;"></i>新闻</el-menu-item>
-            <el-menu-item index="/home/news_search"><i class="fa fa-search" style="margin-right: 17px;margin-left: 5px; margin-bottom: 2px;"></i>新闻搜索</el-menu-item>
-            <el-menu-item index="/home/news_delete"><i class="fa fa-trash-o" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>删除新闻</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
+      <el-menu :unique-opened="true" :router="true" default-active="/home/data" active-text-color="#5e99f3" text-color="#BFCBD9" background-color="#304058" class="el-menu-vertical-demo" :collapse="isCollapse">
+        <el-menu-item index="/home/data">
+          <i class="fa fa-database" style="margin-right: 16px;margin-left: 6px; margin-bottom: 2px;"></i>
+          <span slot="title">数据中心</span>
+        </el-menu-item>
+        <el-menu-item index="/home/news_control">
+          <i class="fa fa-th-large" style="margin-right: 16px;margin-left: 6px; margin-bottom: 2px;"></i>
+          <span slot="title">新闻中心</span>
+        </el-menu-item>
         <el-submenu index="2">
           <template slot="title">
             <i class="fa fa-google-plus" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>
@@ -84,7 +81,7 @@
             <el-menu-item index="/home/other_newindex"><i class="fa fa-pinterest-square" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新首页</el-menu-item>
             <el-menu-item index="/home/other_datalib"><i class="fa fa-wpbeginner" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>每日最优数据库</el-menu-item>
             <el-menu-item index="/home/other_newslieqi"><i class="fa fa-yelp" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>新闻站导猎奇</el-menu-item>
-            <el-menu-item index="/other_feedback"><i class="fa fa-feed" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>用户反馈</el-menu-item>
+            <el-menu-item index="/home/other_feedback"><i class="fa fa-feed" style="margin-right: 19px;margin-left: 5px; margin-bottom: 2px;"></i>用户反馈</el-menu-item>
             <el-submenu index="4-8">
               <template slot="title" ><i class="fa fa-audio-description" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>哈士奇</template>
               <el-menu-item index="/home/hsq_index_banner"><i class="fa fa-bluetooth-b" style="margin-right: 12px;margin-left: 5px; margin-bottom: 2px;"></i>首页轮播图</el-menu-item>
@@ -108,16 +105,10 @@
 export default {
   data() {
     return {
-      isCollapse: false
+      isCollapse: true
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
     switch_p() {
       if (!this.isCollapse) {
         this.isCollapse = true;
@@ -223,6 +214,9 @@ export default {
       border-right: none;
       height: 100%;
       .el-submenu {
+        text-align: left;
+      }
+      .el-menu-item {
         text-align: left;
       }
     }

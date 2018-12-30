@@ -1,5 +1,5 @@
 <template>
-  <h1>news_delete</h1>
+  <h1>Page_topic_news</h1>
 </template>
 
 <script>

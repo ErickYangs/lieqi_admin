@@ -21,8 +21,8 @@
 <script>
 export default {
   methods: {
-    login: () => {
-      this.$router.push({ path: "/home", name: "home" });
+    login() {
+      this.$router.push({ path: "/home/data", name: "data" });
     }
   }
 };

@@ -18,104 +18,99 @@ export default new Router({
       component: () => import("./views/Home.vue"),
       children: [
         {
-          path: "/home/news_add",
-          name: "news_add",
-          component: () => import("./components/News_add.vue")
+          path: "/home/data",
+          name: "data",
+          component: () => import("./components/Data.vue")
         },
         {
-          path: "/home/news_search",
-          name: "news_search",
-          component: () => import("./components/News_search.vue")
-        },
-        {
-          path: "/home/news_delete",
-          name: "news_delete",
-          component: () => import("./components/News_delete.vue")
+          path: "/home/news_control",
+          name: "news_control",
+          component: () => import("./components/News_control.vue")
         },
         {
           path: "/home/page_index_banner",
           name: "page_index_banner",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Page_index_banner.vue")
         },
         {
           path: "/home/page_index_text",
           name: "page_index_text",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Page_index_text.vue")
         },
         {
           path: "/home/page_index_pic",
           name: "page_index_pic",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Page_index_pic.vue")
         },
         {
           path: "/home/page_topic_news",
           name: "page_topic_news",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Page_topic_news.vue")
         },
         {
           path: "/home/page_index2_news",
           name: "page_index2_news",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Page_index2_news.vue")
         },
         {
           path: "/home/page_modify_news",
           name: "page_modify_news",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Page_modify_news.vue")
         },
         {
           path: "/home/soruce_lib",
           name: "soruce_lib",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Soruce_lib.vue")
         },
         {
           path: "/home/source_fe",
           name: "source_fe",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Source_fe.vue")
         },
         {
           path: "/home/source_res",
           name: "source_res",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Source_res.vue")
         },
         {
           path: "/home/other_smy",
           name: "other_smy",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Other_smy.vue")
         },
         {
           path: "/home/other_newindex",
           name: "other_newindex",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Other_newindex.vue")
         },
         {
           path: "/home/other_datalib",
           name: "other_datalib",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Other_datalib.vue")
         },
         {
           path: "/home/other_feedback",
           name: "other_feedback",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Other_feedback.vue")
         },
         {
           path: "/home/hsq_index_banner",
           name: "hsq_index_banner",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Hsq_index_banner.vue")
         },
         {
           path: "/home/hsq_index_text",
           name: "hsq_index_text",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Hsq_index_text.vue")
         },
         {
           path: "/home/hsq_Topic_news",
           name: "hsq_Topic_news",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Hsq_Topic_news.vue")
         },
         {
           path: "/home/other_newslieqi",
           name: "other_newslieqi",
-          component: () => import("./components/News_delete.vue")
+          component: () => import("./components/Other_newslieqi.vue")
         }
       ]
     }
