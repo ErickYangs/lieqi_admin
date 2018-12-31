@@ -59,32 +59,39 @@ export default {
     return {
       dataList: [
         {
-          img: "https://manhua.qpic.cn/operation/0/29_11_54_181ed8a30e4cf068d80c8b878a39bf86_1546055693836.jpg/0",
+          img:
+            "https://manhua.qpic.cn/operation/0/29_11_54_181ed8a30e4cf068d80c8b878a39bf86_1546055693836.jpg/0",
           title: "八重樱 · 桃源恋歌 -先行预告片-【次世代卡通渲染】",
           url: "http://www.lieqinews.com/a/n181213161700173.html"
         },
         {
-          img: "https://manhua.qpic.cn/operation/0/30_12_18_3801eb0af2450093c2bc453ad319508f_1546143497630.jpg/0",
+          img:
+            "https://manhua.qpic.cn/operation/0/30_12_18_3801eb0af2450093c2bc453ad319508f_1546143497630.jpg/0",
           title: "【年终盘点#4】盘点今年那些最棒的女子高中生们！（一月组）",
           url: "http://www.lieqinews.com/a/n181213161700173.html"
         },
         {
-          img: "https://manhua.qpic.cn/operation/0/29_10_45_17ff963c8b087b6801ee37875cbecdfc_1546051515466.jpg/0",
-          title: "游戏侦查冰-育碧竟被国内游戏公司恶意举报！（育碧在中国走过的22年坎坷路-下）",
+          img:
+            "https://manhua.qpic.cn/operation/0/29_10_45_17ff963c8b087b6801ee37875cbecdfc_1546051515466.jpg/0",
+          title:
+            "游戏侦查冰-育碧竟被国内游戏公司恶意举报！（育碧在中国走过的22年坎坷路-下）",
           url: "http://www.lieqinews.com/a/n181213161700173.html"
         },
         {
-          img: "https://manhua.qpic.cn/operation/0/30_12_17_ce1d6695ae8d0a2c48be3859f7a77661_1546143463653.jpg/0",
+          img:
+            "https://manhua.qpic.cn/operation/0/30_12_17_ce1d6695ae8d0a2c48be3859f7a77661_1546143463653.jpg/0",
           title: "【手书】她们的幸福笑容",
           url: "http://www.lieqinews.com/a/n181213161700173.html"
         },
         {
-          img: "https://manhua.qpic.cn/operation/0/29_11_08_ded568964df3c17de11d82dc23ec03e9_1546052897475.jpg/0",
+          img:
+            "https://manhua.qpic.cn/operation/0/29_11_08_ded568964df3c17de11d82dc23ec03e9_1546052897475.jpg/0",
           title: "柚子社游戏的妹子这么萌 这对画师妹子功不可没【橙心驾校】",
           url: "http://www.lieqinews.com/a/n181213161700173.html"
         },
         {
-          img: "https://manhua.qpic.cn/operation/0/29_11_07_dc07cfc5d93ff5b22b813689c487f2ab_1546052870305.png/0",
+          img:
+            "https://manhua.qpic.cn/operation/0/29_11_07_dc07cfc5d93ff5b22b813689c487f2ab_1546052870305.png/0",
           title: "【触碰心灵】那些感动的瞬间 - 只属于我们的故事",
           url: "http://www.lieqinews.com/a/n181213161700173.html"
         }
