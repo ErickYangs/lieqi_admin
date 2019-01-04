@@ -2,12 +2,12 @@
   <div class="login_lay">
     <div class="login_content">
       <h2>后台管理系统</h2>
-      <el-form ref="form" label-width="80px">
-        <el-form-item label="用户名:">
-          <el-input></el-input>
+      <el-form ref="form">
+        <el-form-item>
+          <el-input placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item label="密码:">
-          <el-input></el-input>
+        <el-form-item>
+          <el-input placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="login()">登录</el-button>
@@ -36,11 +36,12 @@ export default {
   background-size: cover;
   overflow: hidden;
   position: relative;
-  .login_content {
+  /deep/ .login_content {
     width: 400px;
-    // height: 300px;
+    box-sizing: border-box;
     padding: 20px 40px 60px;
-    background-color: tomato;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border: skyblue solid 2px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -55,18 +56,19 @@ export default {
       border-bottom: 1px solid #fff;
       color: #fff;
     }
-    /deep/ .el-form {
+    .el-form {
       .el-input {
-        width: 300px;
+        width: 100%;
       }
 
       .el-form-item {
         .el-form-item__content {
-          label {
-            color: #fff !important;
+          .el-form-item__label {
+            color: red !important;
           }
           button.el-button--primary {
             margin-right: 80px;
+            margin-left: 40px;
           }
         }
       }
