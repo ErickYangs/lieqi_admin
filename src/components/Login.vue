@@ -2,12 +2,12 @@
   <div class="login_lay">
     <div class="login_content">
       <h2>后台管理系统</h2>
-      <el-form ref="form">
-        <el-form-item>
-          <el-input placeholder="请输入用户名"></el-input>
+      <el-form ref="form" status-icon :rules="rules">
+        <el-form-item prop="username">
+          <el-input v-model="usermsg.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-input placeholder="请输入密码"></el-input>
+        <el-form-item prop="password">
+          <el-input v-model="usermsg.password" type="password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="login()">登录</el-button>
@@ -20,6 +20,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      usermsg: {
+        username: "",
+        password: ""
+      },
+      rules: {
+        username: [{ required: true, message: "请输入用户名", trigger: "change" }],
+        password: [{ required: true, message: "请输入密码", trigger: "change" }]
+      }
+    };
+  },
   methods: {
     login() {
       this.$router.push({ path: "/home/data", name: "data" });
