@@ -9,12 +9,14 @@
     </div>
     <div class="banner_list">
       <el-table
-        :data="newsData"
+        :data="newsData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
         border
         style="width: 100%">
         <el-table-column
           fixed    
           type="index"
+          :index="indexMethod"
+          align="center"
           width="50">
         </el-table-column>
         <el-table-column
@@ -26,6 +28,7 @@
         <el-table-column
           prop="type"
           label="类型"
+          align="center"          
           width="90">
         </el-table-column>
         <el-table-column
@@ -38,33 +41,39 @@
           show-overflow-tooltip    
           prop="newstime"
           label="新闻时间"
+          align="center"          
           width="160">
         </el-table-column>
         <el-table-column
           show-overflow-tooltip    
           prop="creatime"
+          align="center"
           label="创建时间"
           width="160">
         </el-table-column>
         <el-table-column
         show-overflow-tooltip
           prop="source"
+          align="center"
           label="来源"
           width="86">
         </el-table-column>
         <el-table-column
           show-overflow-tooltip    
           prop="creators"
+          align="center"
           label="创建人员"
           width="120">
         </el-table-column>
         <el-table-column
           show-overflow-tooltip    
           prop="editer"
+          align="center"
           label="最后编辑人员"
           width="120">
         </el-table-column>
         <el-table-column
+          align="center"
           fixed="right"
           label="操作"
           width="180">
@@ -74,6 +83,19 @@
           </template>
         </el-table-column>
       </el-table>
+    </div>
+    <!-- 分页 -->
+    <div class="pagenation">
+      <el-pagination
+      background
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[4, 6, 8, 10]"
+      :page-size="pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="newsData.length">
+    </el-pagination>
     </div>
     <!-- 添加/修改新闻的模态框 -->
     <el-dialog
@@ -135,6 +157,8 @@
 export default {
   data() {
     return {
+      currentPage: 1,
+      pageSize: 6,
       newsData: [],
       multipleSelection: [],
       openModel: false,
@@ -199,16 +223,25 @@ export default {
       this.$refs.newsForm.resetFields();
       this.ruleForm.content = "";
       this.openModel = false;
-      // newsForm
     },
     onEditorBlur(quill) {
-      console.log("editor blur!", quill);
+      // console.log("editor blur!", quill);
     },
     onEditorFocus(quill) {
-      console.log("editor focus!", quill);
+      // console.log("editor focus!", quill);
     },
     onEditorReady(quill) {
-      console.log("editor ready!", quill);
+      // console.log("editor ready!", quill);
+    },
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.currentPage = 1;
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+    },
+    indexMethod(index) {
+      return (this.currentPage - 1) * this.pageSize + index + 1;
     }
   },
   created() {

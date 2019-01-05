@@ -130,7 +130,6 @@ export default {
       }
     },
     loginout() {
-      // console.log(123123);
       localStorage.removeItem("token");
       localStorage.removeItem("username");
       this.$router.push({ path: "/login", name: "login" });
