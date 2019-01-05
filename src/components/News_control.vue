@@ -225,13 +225,13 @@ export default {
       this.openModel = false;
     },
     onEditorBlur(quill) {
-      // console.log("editor blur!", quill);
+      console.log("editor blur!", quill);
     },
     onEditorFocus(quill) {
-      // console.log("editor focus!", quill);
+      console.log("editor focus!", quill);
     },
     onEditorReady(quill) {
-      // console.log("editor ready!", quill);
+      console.log("editor ready!", quill);
     },
     handleSizeChange(val) {
       this.pageSize = val;

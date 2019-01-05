@@ -199,10 +199,10 @@ export default {
         this.unread_data = feedback;
       });
     },
-    handleClick(tab, event) {},
+    handleClick() {},
     sure_feedback(selection, row) {
       this.alread_data.push(row);
-      let sure_idx = this.unread_data.findIndex((v, idx, arr) => {
+      let sure_idx = this.unread_data.findIndex((v, idx) => {
         return row.id === v.id;
       });
       this.unread_data.splice(sure_idx, 1);

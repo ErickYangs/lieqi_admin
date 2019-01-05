@@ -1,9 +1,16 @@
 <template>
-  <h1>data</h1>
+  <div class="layout">
+    <Broken></Broken>
+  </div>
 </template>
 
 <script>
-export default {};
+import Broken from "../assets/echarts/Broken.vue";
+export default {
+  components: {
+    Broken
+  }
+};
 </script>
 
 <style>

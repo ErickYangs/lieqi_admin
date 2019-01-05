@@ -14,6 +14,9 @@ import "quill/dist/quill.bubble.css";
 
 import Base64 from "js-base64";
 
+import echarts from "echarts";
+
+Vue.prototype.$echarts = echarts;
 // base64 加密
 // let Base64 = require("js-base64").Base64;
 
