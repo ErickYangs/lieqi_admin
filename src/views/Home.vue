@@ -24,12 +24,12 @@
       <div class="user-name">
         <el-dropdown trigger="click">
           <span class="el-dropdown-link">
-            EricYang<i class="el-icon-arrow-down el-icon--right"></i>
+            {{usermeg.username}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown" style="top:auto; top: 40px; padding-bottom: 0;">
             <el-dropdown-item>用户信息</el-dropdown-item>
             <el-dropdown-item>项目仓库</el-dropdown-item>
-            <el-dropdown-item class="login-out" style="border-top: 1px solid #ccc;">退出登陆</el-dropdown-item>
+            <el-dropdown-item class="login-out" @click.native="loginout()" style="border-top: 1px solid #ccc;">退出登陆</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -102,10 +102,14 @@
 </template>
 
 <script>
+let Base64 = require("js-base64").Base64;
 export default {
   data() {
     return {
-      isCollapse: true
+      isCollapse: true,
+      usermeg: {
+        username: ""
+      }
     };
   },
   methods: {
@@ -115,7 +119,25 @@ export default {
       } else {
         this.isCollapse = false;
       }
+    },
+    setUsermsg() {
+      if (localStorage.getItem("token") && localStorage.getItem("username")) {
+        let name = localStorage.getItem("username");
+        name = JSON.parse(name);
+        name = Base64.decode(name);
+        // console.log(name);
+         this.usermeg.username = name;
+      }
+    },
+    loginout() {
+      // console.log(123123);
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      this.$router.push({ path: "/login", name: "login" });
     }
+  },
+  created() {
+    this.setUsermsg();
   }
 };
 </script>

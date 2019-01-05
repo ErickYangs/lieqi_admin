@@ -2,7 +2,7 @@
   <div class="login_lay">
     <div class="login_content">
       <h2>后台管理系统</h2>
-      <el-form ref="form" status-icon :rules="rules">
+      <el-form :model="usermsg" ref="form" status-icon :rules="rules">
         <el-form-item prop="username">
           <el-input v-model="usermsg.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+let Base64 = require("js-base64").Base64;
+
 export default {
   data() {
     return {
@@ -27,14 +29,42 @@ export default {
         password: ""
       },
       rules: {
-        username: [{ required: true, message: "请输入用户名", trigger: "change" }],
-        password: [{ required: true, message: "请输入密码", trigger: "change" }]
+        username: [
+          { required: true, message: "请输入用户名", trigger: "change" },
+          { min: 3, max: 12, message: "用户名长度为3-12", trigger: "change" }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "change" },
+          { min: 6, max: 18, message: "密码长度为3-12", trigger: "change" }
+        ]
       }
     };
   },
   methods: {
     login() {
-      this.$router.push({ path: "/home/data", name: "data" });
+      try {
+        this.$refs.form.validate(async valid => {
+          if (valid) {
+            // 验证成功之后使用base64加密专成json字符串存储到localstorage中
+            // Base64.encode(this.usermsg.password);
+            localStorage.setItem(
+              "token",
+              JSON.stringify(Base64.encode(this.usermsg.password))
+            );
+            localStorage.setItem(
+              "username",
+              JSON.stringify(Base64.encode(this.usermsg.username))
+            );
+            // console.log(this);
+            this.$message.success("欢迎来到猎奇新闻管理系统！");
+            this.$router.push({ path: "/home/data", name: "data" });
+          } else {
+            this.$message.error("用户名或密码格式错误，请重新输入！");
+          }
+        });
+      } catch (e) {
+        // console.log(e);
+      }
     }
   }
 };

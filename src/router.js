@@ -2,13 +2,15 @@ import Vue from "vue";
 import Router from "vue-router";
 
 Vue.use(Router);
-
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
+      redirect: "/login"
+    },
+    {
+      path: "/login",
       name: "login",
       component: () => import("./components/Login.vue")
     },
@@ -16,8 +18,7 @@ export default new Router({
       path: "/home",
       name: "home",
       component: () => import("./views/Home.vue"),
-      children: [
-        {
+      children: [{
           path: "/home/data",
           name: "data",
           component: () => import("./components/Data.vue")
@@ -116,3 +117,27 @@ export default new Router({
     }
   ]
 });
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  let login = localStorage.getItem("token");
+  let path = to.path;
+  if (path === "/login") {
+    next();
+    return;
+  }
+  if (login) {
+    if (path === "/") {
+      next({
+        path: "/home/data"
+      });
+    } else {
+      next();
+    }
+  } else {
+    next({
+      path: "/login"
+    });
+  }
+});
+export default router;
