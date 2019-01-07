@@ -9,18 +9,22 @@ export default {
     let myChart = this.$echarts.init(document.getElementById("myChart"));
     let option = {
       title: {
-        text: "一周数据"
+        text: "一周广告数据",
+        top: 0,
+        left: "46%"
       },
       tooltip: {
         trigger: "axis"
       },
       legend: {
-        data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"]
+        data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"],
+        top: "60px"
       },
       grid: {
         left: "3%",
         right: "4%",
         bottom: "3%",
+        top: "20%",
         containLabel: true
       },
       toolbox: {
@@ -65,7 +69,7 @@ export default {
           name: "搜索引擎",
           type: "line",
           stack: "总量",
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
+          data: [820, 932, 901, 934, 90, 30, 20]
         }
       ]
     };

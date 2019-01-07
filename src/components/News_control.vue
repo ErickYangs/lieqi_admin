@@ -23,7 +23,7 @@
           show-overflow-tooltip    
           prop="title"
           label="标题"
-          width="300">
+          min-width="300">
         </el-table-column>
         <el-table-column
           prop="type"
@@ -34,7 +34,7 @@
         <el-table-column
           show-overflow-tooltip
           label="链接"
-          width="300">
+          min-width="300">
           <template slot-scope="scope"><a :href="scope.row.link">{{ scope.row.link }}</a></template>
         </el-table-column>
         <el-table-column
@@ -56,7 +56,7 @@
           prop="source"
           align="center"
           label="来源"
-          width="86">
+          min-width="86">
         </el-table-column>
         <el-table-column
           show-overflow-tooltip    
@@ -218,6 +218,8 @@ export default {
     },
     cancel() {
       this.openModel = false;
+      this.$refs.newsForm.resetFields();
+      this.ruleForm.content = "";
     },
     sure() {
       this.$refs.newsForm.resetFields();

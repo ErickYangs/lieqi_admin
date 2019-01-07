@@ -18,6 +18,7 @@
           type="index"
           width="55"
           fixed
+          align="center"
           style="text-align: center;">
         </el-table-column>
         <el-table-column
@@ -28,25 +29,27 @@
         </el-table-column>
         <el-table-column
           prop="url"
-          width="300"
+          min-width="300"
           label="链接"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           width="200"
+          align="center"
           label="图片">
           <template slot-scope="scope">
             <img :src="scope.row.img" alt="" style="width: 140px;">
           </template>
         </el-table-column>
-        <el-table-column width="100" label="展现PV" prop="zspv"></el-table-column> 
-        <el-table-column width="100" label="点击PV" prop="djpv"></el-table-column> 
-        <el-table-column width="100" label="实时点击率" prop="ssdjl"></el-table-column> 
-        <el-table-column width="110" label="自定义展现" prop="zdyzx"></el-table-column> 
-        <el-table-column width="110" label="自定义点击率" prop="zdydjl"></el-table-column> 
+        <el-table-column width="100" align="center" label="展现PV" prop="zspv"></el-table-column> 
+        <el-table-column width="100" align="center" label="点击PV" prop="djpv"></el-table-column> 
+        <el-table-column width="100" align="center" label="实时点击率" prop="ssdjl"></el-table-column> 
+        <el-table-column width="110" align="center" label="自定义展现" prop="zdyzx"></el-table-column> 
+        <el-table-column width="110" align="center" label="自定义点击率" prop="zdydjl"></el-table-column> 
         <el-table-column
           fixed="right"
           width="180"
+          align="center"
           label="操作"
           >
           <template slot-scope="scope">

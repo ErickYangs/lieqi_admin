@@ -13,5 +13,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.layout {
+  margin-top: 10px;
+  padding: 10px 10px 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
 </style>
