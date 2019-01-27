@@ -121,17 +121,13 @@ export default {
       }
     },
     setUsermsg() {
-      if (localStorage.getItem("token") && localStorage.getItem("username")) {
+      if (localStorage.getItem("token")) {
         let name = localStorage.getItem("username");
-        name = JSON.parse(name);
-        name = Base64.decode(name);
-        // console.log(name);
-         this.usermeg.username = name;
+         this.usermeg.username = this.$store.state.username;
       }
     },
     loginout() {
       localStorage.removeItem("token");
-      localStorage.removeItem("username");
       this.$router.push({ path: "/login", name: "login" });
     }
   },
