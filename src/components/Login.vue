@@ -50,6 +50,11 @@ export default {
               let {token, name} = res.data.data;
               this.$store.state.token = token;
               this.$store.state.username = name;
+              // 问题：vuex中的state在页面刷新的时候数据会丢失
+              /**
+               * 1. 利用sessionStorage 缓存，用得时候再去
+               * 2. 请求数据的时候把token作为请求头传递到服务器
+               */
               // console.log(this.$store.state.username);
               // console.log(this.$store.state.token);
             //   验证成功之后使用base64加密专成json字符串存储到localstorage中
