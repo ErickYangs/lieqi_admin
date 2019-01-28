@@ -17,19 +17,20 @@
 export default {
   data() {
     return {
-      test: '222'
-    }
+      test: "222"
+    };
   },
   methods: {
-  async  get_lib_data() {
+    async get_lib_data() {
       // console.log(this.$store);
-      this.axios.post("/api/index/qishoulib/index", {token: this.$store.state.token}).then(res => {
-        console.log(res);
-        
-      }).catch(err => {
-        console.log(err);
-        
-      })
+      this.axios
+        .post("/api/index/qishoulib/index", { token: this.$store.state.token })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   created() {
