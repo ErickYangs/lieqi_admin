@@ -112,6 +112,16 @@ const router = new Router({
           path: "/home/other_newslieqi",
           name: "other_newslieqi",
           component: () => import("./components/Other_newslieqi.vue")
+        },
+        {
+          path: "/home/user_management",
+          name: "user_management",
+          component: () => import("./components/User_management.vue")
+        },
+        {
+          path: "/home/permission",
+          name: "permission",
+          component: () => import("./components/Permission.vue")
         }
       ]
     }
@@ -120,7 +130,7 @@ const router = new Router({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  let login = localStorage.getItem("token");
+  let login = sessionStorage.getItem("token");
   let path = to.path;
   if (path === "/login") {
     next();

@@ -90,6 +90,16 @@
             </el-submenu>
           </el-menu-item-group>
         </el-submenu>
+        <el-submenu index="5">
+          <template slot="title">
+            <i class="el-icon-news" style="margin-right: 8px;margin-left: 2px; margin-bottom: 2px;"></i>
+            <span slot="title">账号管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/home/user_management"><i class="fa fa-edge" style="margin-right: 18px;margin-left: 5px; margin-bottom: 2px;"></i>用户管理</el-menu-item>
+            <el-menu-item index="/home/permission"><i class="fa fa-foursquare" style="margin-right: 20px;margin-left: 5px; margin-bottom: 2px;"></i>权限管理</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
       </el-menu>
     </el-aside>
     <el-main>
@@ -102,7 +112,6 @@
 </template>
 
 <script>
-let Base64 = require("js-base64").Base64;
 export default {
   data() {
     return {
@@ -121,13 +130,15 @@ export default {
       }
     },
     setUsermsg() {
-      if (localStorage.getItem("token")) {
-        let name = localStorage.getItem("username");
-         this.usermeg.username = this.$store.state.username;
+      let _token = this.common.get_sessionStorage("token");
+      if (_token) {
+        let name = this.common.get_sessionStorage("username");
+        this.usermeg.username = name;
       }
     },
     loginout() {
-      localStorage.removeItem("token");
+      // 登出清空sessionStorage
+      sessionStorage.clear();
       this.$router.push({ path: "/login", name: "login" });
     }
   },

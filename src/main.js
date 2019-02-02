@@ -16,6 +16,10 @@ import Base64 from "js-base64";
 
 import echarts from "echarts";
 
+import common from "./assets/common/js/common";
+
+Vue.prototype.common = common;
+
 Vue.prototype.$echarts = echarts;
 // base64 加密
 // let Base64 = require("js-base64").Base64;

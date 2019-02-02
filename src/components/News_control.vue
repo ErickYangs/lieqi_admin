@@ -79,7 +79,7 @@
           width="180">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="primary" plain size="small"><i class="el-icon-edit"></i>编辑</el-button>
-                <el-button @click="handleClick(scope.row)" type="danger" plain size="small"><i class="el-icon-delete"></i>删除</el-button>
+            <el-button @click="handleClick(scope.row)" type="danger" plain size="small"><i class="el-icon-delete"></i>删除</el-button>
           </template>
         </el-table-column>
       </el-table>

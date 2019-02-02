@@ -19,8 +19,6 @@
 </template>
 
 <script>
-let Base64 = require("js-base64").Base64;
-
 export default {
   data() {
     return {
@@ -45,46 +43,29 @@ export default {
       try {
         this.$refs.form.validate(async valid => {
           if (valid) {
-            this.axios
-              .post("/api/index/index/login", this.usermsg)
-              .then(res => {
-                console.log(res);
-                let { token, name } = res.data.data;
-                this.$store.state.token = token;
-                this.$store.state.username = name;
-                // 问题：vuex中的state在页面刷新的时候数据会丢失
-                /**
-                 * 1. 利用sessionStorage 缓存，用得时候再去
-                 * 2. 请求数据的时候把token作为请求头传递到服务器
-                 */
-                // console.log(this.$store.state.username);
-                // console.log(this.$store.state.token);
-                //   验证成功之后使用base64加密专成json字符串存储到localstorage中
-                Base64.encode(this.usermsg.password);
-                localStorage.setItem(
-                  "token",
-                  JSON.stringify(Base64.encode(this.usermsg.password))
-                );
-                this.$message.success("欢迎来到猎奇新闻管理系统！");
-                this.$router.push({ path: "/home/data", name: "data" });
-              })
-              .catch(err => {
-                console.log(err);
-              });
-
-            // localStorage.setItem(
-            //   "username",
-            //   JSON.stringify(Base64.encode(this.usermsg.username))
-            // );
-            // // console.log(this);
-            // this.$message.success("欢迎来到猎奇新闻管理系统！");
-            // this.$router.push({ path: "/home/data", name: "data" });
+            let res = await this.axios.post(
+              "/api/index/index/login",
+              this.usermsg
+            );
+            if (res.data.code == 0) {
+              let { token, name } = res.data.data;
+              this.$store.state.token = token;
+              this.$store.state.username = name;
+              // 存token
+              this.common.set_sessionStorage("token", token);
+              // 存用户名
+              this.common.set_sessionStorage("username", name);
+              this.$message.success("欢迎来到猎奇新闻管理系统！");
+              this.$router.push({ path: "/home/data", name: "data" });
+            } else {
+              this.$message.error(res.data.message);
+            }
           } else {
             this.$message.error("用户名或密码格式错误，请重新输入！");
           }
         });
       } catch (e) {
-        // console.log(e);
+        throw e;
       }
     }
   }
